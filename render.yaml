@@ -2,7 +2,7 @@ services:
   - type: web
     name: skillsforge
     runtime: node
-    plan: starter
+    plan: free
     buildCommand: npm ci && npm run db:generate --workspace=skillsforge && npx prisma migrate deploy --schema apps/skillsforge/prisma/schema.prisma && npm run build --workspace=skillsforge
     startCommand: npm run start --workspace=skillsforge
     healthCheckPath: /api/health
