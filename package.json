@@ -1,0 +1,30 @@
+{
+  "name": "skillsforge-monorepo",
+  "private": true,
+  "packageManager": "npm@11.19.1",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev --filter=skillsforge",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "e2e": "npm --prefix apps/skillsforge run e2e",
+    "e2e:install": "npm --prefix apps/skillsforge run e2e:install",
+    "db:push": "npm --prefix apps/skillsforge run db:push",
+    "db:generate": "npm --prefix apps/skillsforge run db:generate",
+    "seed": "npm --prefix apps/skillsforge run seed",
+    "seed:verify": "npm --prefix apps/skillsforge run seed:verify",
+    "job:expiry": "npm --prefix apps/skillsforge run job:expiry"
+  },
+  "overrides": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.14"
+  }
+}
