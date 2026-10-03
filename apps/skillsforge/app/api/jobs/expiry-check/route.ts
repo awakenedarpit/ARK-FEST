@@ -11,6 +11,28 @@ import { DEMO_ORG } from "@/lib/demo/seedData";
 
 export const dynamic = "force-dynamic";
 
+// Vercel Cron invokes this route with GET and authenticates using CRON_SECRET.
+export async function GET(req: NextRequest) {
+  const authorization = req.headers.get("authorization");
+  const cronSecret = process.env.CRON_SECRET;
+
+  if (!cronSecret || authorization !== "Bearer " + cronSecret) {
+    return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
+  }
+
+  const headers = new Headers(req.headers);
+  headers.set("x-internal-secret", process.env.INTERNAL_SECRET || "");
+
+  const internalRequest = new NextRequest(req.url, {
+    method: "POST",
+    headers,
+    body: "{}"
+  });
+
+  return POST(internalRequest);
+}
+
+
 const bodySchema = z.object({
   asOf: z.string().optional(),
 });
