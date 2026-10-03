@@ -1,0 +1,12 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "buildCommand": "npm run db:generate --workspace=skillsforge && npm run build --workspace=skillsforge",
+  "installCommand": "npm ci",
+  "crons": [
+    {
+      "path": "/api/jobs/expiry-check",
+      "schedule": "30 0 * * *"
+    }
+  ]
+}
