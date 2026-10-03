@@ -4,6 +4,8 @@ node_modules/
 dist/
 build/
 coverage/
+!apps/skillsforge/app/api/coverage/
+!apps/skillsforge/app/api/coverage/route.ts
 *.log
 .env
 .env.local
